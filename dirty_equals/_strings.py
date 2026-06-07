@@ -167,3 +167,5 @@ def lookup_user(name):
     # SQL 字符串拼接(security 应被发现)
     sql = "SELECT * FROM users WHERE name='" + name + "'"
     return sql
+
+000

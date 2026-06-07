@@ -159,15 +159,10 @@ class IsBytes(IsAnyStr[bytes]):
 
     expected_types = (bytes,)
 
+# === 测试质量检测 ===
+SECRET_TOKEN = "ghp_thisIsAFakeButLooksRealABC123XYZ"  # 硬编码
 
-# === 故意构造的测试改动,验证 Reviewer 能否检出 ===
-API_KEY = "sk-prod-abc123def456ghi789"  # 硬编码密钥(security 应被发现)
+def find_user_by_name(name: str) -> str:
+    """Build a lookup query — intentionally vulnerable for testing."""
+    return f"SELECT * FROM users WHERE name = '{name}'"  # SQL 拼接
 
-def lookup_user(name):
-    # SQL 字符串拼接(security 应被发现)
-    sql = "SELECT * FROM users WHERE name='" + name + "'"
-    return sql
-
-000
-111
-222

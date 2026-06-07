@@ -158,3 +158,12 @@ class IsBytes(IsAnyStr[bytes]):
     """
 
     expected_types = (bytes,)
+
+
+# === 故意构造的测试改动,验证 Reviewer 能否检出 ===
+API_KEY = "sk-prod-abc123def456ghi789"  # 硬编码密钥(security 应被发现)
+
+def lookup_user(name):
+    # SQL 字符串拼接(security 应被发现)
+    sql = "SELECT * FROM users WHERE name='" + name + "'"
+    return sql

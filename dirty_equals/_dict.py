@@ -232,3 +232,9 @@ class IsStrictDict(IsDict):
 
     def _post_init(self) -> None:
         self.strict = True
+
+from ._base import DirtyEquals  # 已有这个 import,确认即可
+
+def is_strict_dirty_equals(obj: object) -> bool:
+    """Helper: check if obj is a strict DirtyEquals subclass."""
+    return isinstance(obj, DirtyEquals) and getattr(obj, "_strict", False)
